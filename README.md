@@ -37,6 +37,11 @@ I translated the research question into a molecular machine-learning workflow, i
 
 ## Approach and workflow
 
+![LeadOptAI conceptual workflow: molecular inputs, joint learning and evaluation](figures/leadoptai_workflow.svg)
+
+*Conceptual overview only; no unpublished numerical results or implementation parameters are shown.*
+
+
 1. **Prepare molecular inputs:** process SMILES and associated continuous descriptors.
 2. **Build joint representations:** embed discrete tokens and numerical property values in a shared model.
 3. **Apply reconstruction tasks:** combine conventional masking with functional-group and BRICS masking.
