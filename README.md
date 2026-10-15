@@ -3,7 +3,9 @@
 
 **Juliana Rivera Camacho · M.Sc. Molecular Life Sciences · Universität Hamburg**
 
-LeadOptAI investigates how molecular structure and continuous physicochemical properties can be learned jointly to support research into property-aware molecular editing. Developed as a master’s thesis project, it combines a bidirectional SMILES Transformer with chemistry-informed reconstruction tasks.
+**Research setting:** Universitätsklinikum Hamburg-Eppendorf (UKE).
+
+LeadOptAI investigates how molecular structure and continuous physicochemical properties can be learned jointly to support research into property-aware molecular editing. Developed at Universitätsklinikum Hamburg-Eppendorf (UKE) as a master’s thesis project within the M.Sc. Molecular Life Sciences program at Universität Hamburg, it combines a bidirectional SMILES Transformer with chemistry-informed reconstruction tasks.
 
 **Public project overview:** this repository contains documentation and an implementation map. Source code, trained weights, datasets, detailed training configurations and unpublished results remain in the private research repository while the work is prepared for publication.
 
