@@ -1,53 +1,80 @@
 # LeadOptAI
+## Molecular property modeling and chemistry-aware learning for lead-optimization research
 
-**Chemistry-aware molecular machine learning for property prediction and SMILES infilling**
+**Juliana Rivera Camacho · M.Sc. Molecular Life Sciences · Universität Hamburg**
 
-LeadOptAI is a research project developed by **Juliana Rivera Camacho** as part of a master’s thesis in Molecular Life Sciences at Universität Hamburg.
+LeadOptAI investigates how molecular structure and continuous physicochemical properties can be learned jointly to support research into property-aware molecular editing. Developed as a master’s thesis project, it combines a bidirectional SMILES Transformer with chemistry-informed reconstruction tasks.
 
-This public repository introduces the project and documents the organization of its private research implementation. It contains documentation only. Source code, trained weights, datasets and detailed experimental results are not distributed here while the work is being prepared for publication.
+**Public project overview:** this repository contains documentation and an implementation map. Source code, trained weights, datasets, detailed training configurations and unpublished results remain in the private research repository while the work is prepared for publication.
 
-## Research motivation
+## The drug-discovery question
 
-Molecular optimization requires balancing physicochemical properties while considering chemical structure. LeadOptAI investigates whether chemically informed reconstruction tasks can help a Transformer learn relationships between molecular representations and continuous property information.
+How can a molecular model connect chemical context with physicochemical properties when reconstructing a selected region of an existing molecule?
 
-## Project overview
+Lead optimization involves balancing several properties while considering which structural features should be retained or modified. LeadOptAI explores a computational foundation for this problem through joint molecular-property prediction and masked-region reconstruction.
 
-The framework combines:
+## Project at a glance
 
-- A bidirectional Transformer encoder for SMILES representations.
-- Separate embeddings for discrete tokens and continuous molecular descriptors.
-- Joint masked-token reconstruction and molecular-property prediction.
-- Single-token, contiguous-block, functional-group and BRICS fragment masking.
-- Experimental comparison of masking strategies and optional atom-level features.
+| Research focus | Approach | Relevance to discovery research |
+| --- | --- | --- |
+| Structure–property learning | Joint representation of SMILES and continuous numerical descriptors | Learning relationships between chemical structure and physicochemical profiles |
+| Molecular-property modeling | Property-specific regression alongside molecular reconstruction | Multi-task learning and evaluation of molecular representations |
+| Localized molecular editing | Reconstruction of selected masked SMILES regions using surrounding context | Investigation of edits to existing molecules |
+| Chemical knowledge | Functional-group and BRICS masking alongside token and block masking | Reconstruction tasks at multiple structural scales |
+| Experimental evaluation | Baseline comparisons and masking/feature experiments | Assessing model behavior and the contribution of design choices |
 
-The molecular descriptors considered are molecular weight, LogP, rotatable bonds, topological polar surface area, hydrogen-bond donors and hydrogen-bond acceptors.
+## Physicochemical properties
 
-## Why chemistry-aware masking?
+The project considers six descriptors relevant to characterizing molecular profiles:
 
-Functional-group and BRICS masking select recognizable chemical units for reconstruction. Together with token and block masking, they provide learning tasks at several structural scales. The research examines how these objectives support molecular representation learning and the investigation of localized molecular editing.
+| Descriptor | Information represented |
+| --- | --- |
+| Molecular weight | Molecular size by mass |
+| LogP | Lipophilicity |
+| Rotatable bonds | A descriptor of molecular flexibility |
+| Topological polar surface area (TPSA) | Polar surface contribution |
+| Hydrogen-bond donors (HBD) | Hydrogen-bond donation capacity |
+| Hydrogen-bond acceptors (HBA) | Hydrogen-bond acceptance capacity |
+
+These descriptors are modeled as continuous numerical values. They characterize physicochemical properties; they do not by themselves establish potency, selectivity, toxicity or a complete ADMET profile.
 
 ## My contribution
 
-I developed the model and molecular-data workflow, implemented chemistry-informed masking, conducted training and evaluation experiments, compared molecular language-model baselines, and analyzed and communicated the results.
+I translated the research question into a molecular machine-learning workflow, including:
 
-**Technology:** Python · PyTorch · RDKit · SMILES · SMARTS · BRICS
+- **Molecular data preparation:** processing SMILES and associated numerical property information for modeling.
+- **Model development:** implementing a bidirectional Transformer with separate discrete and continuous embeddings and joint prediction objectives.
+- **Chemistry-informed learning:** implementing functional-group and BRICS masking using RDKit alongside conventional sequence masking.
+- **Training and evaluation:** developing training/validation workflows, comparing molecular language-model baselines and investigating experimental variants.
+- **Scientific analysis:** visualizing performance, interpreting results and communicating findings and limitations.
 
-## Implementation structure
+## Why chemistry-aware masking matters
 
-[CODE_STRUCTURE.md](CODE_STRUCTURE.md) describes the main files in the private research implementation and their responsibilities. It is a navigation map, not executable source code. The listed Python files are deliberately absent from this public repository.
+Masking recognizable functional groups and BRICS fragments asks the model to reconstruct chemical units from their molecular context. Combined with individual-token and contiguous-block tasks, it provides learning objectives at complementary structural scales. The project investigates whether this chemical organization offers useful information for molecular representation learning and property-aware editing research.
 
-## Scientific scope
+## Technical experience demonstrated
 
-The evaluated infilling setup used properties associated with the source molecule. It therefore examines reconstruction and preservation of the source property profile. Control toward intentionally changed property targets remains a separate validation task. Physicochemical descriptors do not establish biological activity or a full ADMET profile.
+**Python · PyTorch · RDKit · Transformer encoders · Multi-task learning · SMILES · SMARTS · BRICS**
 
-## Research and publication status
+The work combines molecular-data processing, custom neural components, training workflows, baseline evaluation and scientific interpretation. It provides evidence of hands-on molecular ML research relevant to computational drug discovery and molecular-property modeling.
 
-This work is being prepared for scientific publication. Please acknowledge the researchers’ contributions and contact the author to discuss collaboration or access to unpublished material. Publication details and any future release information will be added when available.
+## Evidence and interpretation
+
+The research evaluates property prediction and molecular reconstruction and includes comparisons with molecular language-model baselines. Detailed numerical results and experimental configurations are reserved for the research publication.
+
+The evaluated infilling setup uses the source molecule’s property values. It therefore examines **reconstruction and source-property preservation**. Successful optimization toward deliberately shifted property targets remains a separate validation task.
+
+Further research should evaluate scaffold generalization, the quality and size of molecular edits, performance toward changed property targets, and downstream biological or structure-based assessments.
+
+## Implementation map
+
+See [CODE_STRUCTURE.md](CODE_STRUCTURE.md) for the main files and responsibilities in the private implementation. This is a documentation map; the listed Python files are not distributed in this public repository.
+
+## Research status and collaboration
+
+LeadOptAI is research intended for scientific publication. Please acknowledge the researchers’ contributions and contact the author to discuss collaboration or unpublished material. Publication and future release information will be added when available.
 
 This overview does not grant access to the private implementation or introduce a license for it. Third-party rights remain applicable.
 
-## Author
-
-**Juliana Rivera Camacho** · Universität Hamburg · Hamburg, Germany
-
+**Juliana Rivera Camacho** · Hamburg, Germany  
 [GitHub profile](https://github.com/julianariveracamacho)
